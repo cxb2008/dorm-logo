@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>寝绘青春 宿说美好 — 宿舍门牌设计展</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a3c34'/><text x='50' y='70' font-size='56' text-anchor='middle' fill='%23e85d3a' font-family='serif' font-weight='900'>宿</text></svg>">
+<style>
+/* ===== 基础 ===== */
+:root {
+  --ink: #3a2e26;
+  --ink-light: #6b5a4e;
+  --paper: #fdf8f0;
+  --paper-dark: #f7f0e2;
+  --accent: #d9533f;
+  --accent-light: #ec8a6a;
+  --mustard: #e8a838;
+  --sage: #5a8a6a;
+  --sky: #4a7aa8;
+  --rose: #c4687a;
+  --text: #332c25;
+  --text-soft: #7a6e60;
+  --line: #e5d9c5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Songti SC", "STSong", "SimSun", "Noto Serif SC", Georgia, serif;
+  background: var(--paper);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* 纸张纹理 */
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(232, 168, 56, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(217, 83, 63, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(90, 138, 106, 0.03) 0%, transparent 40%);
+}
+
+/* 选中文字颜色 */
+::selection { background: var(--accent); color: #fff; }
+
+/* ===== 顶部条 ===== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(58, 46, 38, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--paper);
+  padding: 0 20px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.topbar-left { font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.topbar-nav {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-left: 16px;
+  align-items: center;
+}
+.topbar-nav::-webkit-scrollbar { display: none; }
+.topbar-nav a {
+  color: rgba(243, 237, 224, 0.55);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: color 0.15s;
+  font-family: -apple-system, "PingFang SC", sans-serif;
+  padding: 4px 0;
+}
+.topbar-nav a:hover { color: var(--paper); }
+.topbar-nav a.active { color: var(--mustard); }
+
+/* ===== 通用 ===== */
+.wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-family: -apple-system, sans-serif;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+/* 手绘下划线 */
+.hand-underline {
+  position: relative;
+  display: inline-block;
+}
+.hand-underline::after {
+  content: '';
+  position: absolute;
+  left: -2px; right: -2px;
+  bottom: -4px;
+  height: 8px;
+  background: var(--mustard);
+  opacity: 0.5;
+  z-index: -1;
+  transform: skewX(-3deg);
+}
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(155deg, #e8684a 0%, #eda64a 45%, #e08870 100%);
+  color: var(--ink);
+  position: relative;
+  padding: 80px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+/* 装饰：大号半透明字 */
+.hero-deco {
+  position: absolute;
+  font-size: 220px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Georgia, serif;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-meta {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(58, 46, 38, 0.7);
+  margin-bottom: 20px;
+  font-family: -apple-system, sans-serif;
+  font-weight: 600;
+}
+.hero-title {
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 8px;
+  letter-spacing: 3px;
+}
+.hero-title .row2 {
+  color: #fff;
+  display: block;
+  margin-left: 40px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+.hero-title .slash {
+  color: var(--mustard);
+  font-weight: 400;
+}
+.hero-sub {
+  font-size: 15px;
+  color: rgba(58, 46, 38, 0.75);
+  margin-top: 24px;
+  line-height: 1.9;
+  max-width: 320px;
+  font-weight: 500;
+}
+.hero-org {
+  margin-top: 32px;
+  font-size: 12px;
+  color: rgba(58, 46, 38, 0.55);
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(58, 46, 38, 0.2);
+  padding-top: 16px;
+}
+/* 手绘箭头 */
+.hero-arrow {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(58, 46, 38, 0.5);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.hero-arrow svg { animation: arrowDown 1.8s ease-in-out infinite; }
+@keyframes arrowDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ===== 简介区 ===== */
+.intro {
+  padding: 72px 0 64px;
+}
+.intro-quote {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  padding-left: 16px;
+  border-left: 4px solid var(--accent);
+}
+.intro-body {
+  font-size: 14.5px;
+  color: var(--text);
+  line-height: 2;
+  margin-bottom: 32px;
+}
+.intro-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.intro-point {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: flex-start;
+}
+.point-num {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+  min-width: 28px;
+  line-height: 1.3;
+}
+.point-text h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.point-text p {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+/* ===== 时间区 ===== */
+.schedule {
+  background: #eaf1f6;
+  color: var(--text);
+  padding: 72px 0 64px;
+  position: relative;
+}
+.schedule .section-label { color: var(--sky); }
+.schedule .section-title { color: var(--ink); }
+.schedule .section-num { color: var(--sky); }
+
+.phase {
+  margin-bottom: 40px;
+  position: relative;
+}
+.phase:last-child { margin-bottom: 0; }
+.phase-date {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: var(--sky);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.phase-name {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.phase-name .badge {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--sky);
+  color: #fff;
+  padding: 3px 10px;
+  letter-spacing: 1px;
+  font-family: -apple-system, sans-serif;
+}
+.phase-desc {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  line-height: 1.9;
+  padding-left: 14px;
+  border-left: 2px solid #c5d8e6;
+}
+.phase-criteria {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 14px;
+}
+.criteria-chip {
+  font-size: 11px;
+  color: var(--ink-light);
+  border: 1px solid #c5d8e6;
+  padding: 4px 12px;
+  font-family: -apple-system, sans-serif;
+  background: rgba(255, 255, 255, 0.5);
+}
+.criteria-chip strong {
+  color: var(--sky);
+  font-weight: 700;
+}
+
+/* ===== 投稿区 ===== */
+.submit {
+  background: #fdf0e6;
+  padding: 72px 0 64px;
+}
+.email-block {
+  background: linear-gradient(135deg, #d9533f 0%, #e87a4a 100%);
+  color: #fff;
+  padding: 32px 24px;
+  margin: 0 -24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.email-block::before {
+  content: 'EMAIL';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: Georgia, serif;
+}
+.email-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+  font-family: -apple-system, sans-serif;
+}
+.email-addr {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  word-break: break-all;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, "PingFang SC", sans-serif;
+}
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  letter-spacing: 1px;
+}
+.copy-btn:hover { background: #fff5f0; transform: translateY(-1px); }
+.copy-btn.copied { background: #4a8c5a; color: #fff; }
+
+.format-block {
+  margin-bottom: 24px;
+}
+.format-block h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.format-box {
+  background: var(--paper-dark);
+  border: 1px dashed var(--line);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--ink);
+  font-family: "SF Mono", Consolas, monospace;
+  line-height: 1.7;
+}
+.type-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.type-item {
+  border: 1px solid var(--line);
+  padding: 16px 14px;
+  background: var(--paper);
+}
+.type-item h5 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.type-item p {
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+.note-box {
+  background: #fdf6e3;
+  border-left: 4px solid var(--mustard);
+  padding: 16px 18px;
+  font-size: 13px;
+  color: #7a6520;
+  line-height: 1.8;
+}
+
+/* ===== 奖项区 ===== */
+.awards {
+  background: #fdf6e0;
+  padding: 72px 0 64px;
+}
+.awards .section-num { color: var(--mustard); }
+.awards .section-label { color: #b8902a; }
+.award-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid #e8d8a8;
+}
+.award-row:first-of-type { border-top: 2px solid var(--mustard); }
+.award-rank {
+  font-family: Georgia, serif;
+  font-size: 36px;
+  font-weight: 900;
+  min-width: 50px;
+  line-height: 1;
+}
+.rank-1 { color: var(--accent); }
+.rank-2 { color: var(--ink-light); }
+.rank-3 { color: #a0724a; }
+.rank-4 { color: var(--mustard); font-size: 28px; }
+.award-info h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.award-info p {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+.award-location {
+  margin-top: 28px;
+  font-size: 12px;
+  color: var(--text-soft);
+  text-align: right;
+  font-style: italic;
+}
+
+/* ===== 须知区 ===== */
+.rules {
+  background: #eef4ee;
+  padding: 72px 0 64px;
+}
+.rules .section-num { color: var(--sage); }
+.rules .section-label { color: #4a7a58; }
+.rule-item {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid #c8dcc8;
+}
+.rule-item:first-of-type { border-top: 2px solid var(--sage); }
+.rule-num {
+  font-family: Georgia, serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--sage);
+  line-height: 1;
+  min-width: 44px;
+  opacity: 0.8;
+}
+.rule-content h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.rule-content p {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.9;
+}
+
+/* ===== 结尾 ===== */
+.end {
+  background: linear-gradient(160deg, #3a2e26 0%, #5a4030 100%);
+  color: var(--paper);
+  padding: 80px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.end-deco {
+  position: absolute;
+  font-size: 160px;
+  font-weight: 900;
+  color: rgba(232, 168, 56, 0.08);
+  font-family: Georgia, serif;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.end-title {
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+}
+.end-title .accent { color: var(--mustard); }
+.end-sub {
+  font-size: 14px;
+  color: rgba(243, 237, 224, 0.6);
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+}
+.end-info {
+  text-align: left;
+  max-width: 360px;
+  margin: 0 auto 32px;
+  position: relative;
+  z-index: 2;
+}
+.end-info-row {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(243, 237, 224, 0.12);
+  font-size: 13px;
+}
+.end-info-row:last-child { border-bottom: none; }
+.end-info-k {
+  color: rgba(243, 237, 224, 0.45);
+  min-width: 72px;
+  letter-spacing: 1px;
+}
+.end-info-v {
+  color: var(--paper);
+  font-weight: 600;
+  word-break: break-all;
+}
+.end-org {
+  font-size: 11px;
+  color: rgba(243, 237, 224, 0.35);
+  letter-spacing: 1px;
+  margin-top: 32px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.8;
+}
+
+/* ===== 回到顶部 ===== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+  z-index: 99;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(217, 83, 63, 0.3);
+}
+.to-top.show { opacity: 1; visibility: visible; }
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 12px;
+  padding: 8px 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+  z-index: 200;
+  letter-spacing: 1px;
+  font-family: -apple-system, sans-serif;
+}
+.toast.show { opacity: 1; visibility: visible; }
+
+/* ===== 桌面适配 ===== */
+@media (min-width: 768px) {
+  body { font-size: 16px; }
+  .wrap { max-width: 680px; padding: 0 32px; }
+  .hero { padding: 100px 40px 80px; }
+  .hero-title { font-size: 64px; }
+  .hero-title .row2 { margin-left: 60px; }
+  .section-title { font-size: 34px; }
+  .section-num { font-size: 96px; }
+  .email-block { margin: 0 -32px 32px; padding: 40px 32px; }
+  .email-addr { font-size: 30px; }
+  .type-row { gap: 16px; }
+  .intro-quote { font-size: 24px; }
+  .phase-name { font-size: 24px; }
+  .end-title { font-size: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部条 -->
+<div class="topbar">
+  <span class="topbar-left">宿舍门牌设计展</span>
+  <nav class="topbar-nav">
+    <a href="#intro">简介</a>
+    <a href="#schedule">流程</a>
+    <a href="#submit">投稿</a>
+    <a href="#awards">奖项</a>
+    <a href="#rules">须知</a>
+  </nav>
+</div>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="hero-deco">宿</div>
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="hero-meta">QUANZHOU ARTS &amp; CRAFTS VOCATIONAL COLLEGE</div>
+    <h1 class="hero-title">
+      寝绘青春
+      <span class="row2">宿说<span class="slash">／</span>美好</span>
+    </h1>
+    <p class="hero-sub">
+      宿舍门牌 Logo 设计活动<br>
+      用一支笔，为你的宿舍画一张脸。
+    </p>
+    <div class="hero-org">主办 · 泉州工艺美术职业学院学生委员会</div>
+  </div>
+  <div class="hero-arrow">
+    <span>向下滚动</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  </div>
+</header>
+
+<!-- ===== 简介 ===== -->
+<section class="intro" id="intro">
+  <div class="wrap">
+    <div class="section-num">01</div>
+    <div class="section-label">ABOUT</div>
+    <h2 class="section-title">关于<span class="hand-underline">这次活动</span></h2>
+    <p class="intro-quote">
+      每一间宿舍，都值得一张独一无二的门牌。
+    </p>
+    <p class="intro-body">
+      为丰富校园文化生活，营造温馨和谐的宿舍氛围，本次活动以宿舍门牌 Logo 设计为载体，鼓励同学们用画笔记录宿舍故事、展现舍友个性风采。挖掘宿舍文化内涵，增进舍友沟通协作，强化集体凝聚力，打造特色宿舍文化，助力文明宿舍建设。
+    </p>
+    <div class="intro-points">
+      <div class="intro-point">
+        <div class="point-num">壹</div>
+        <div class="point-text">
+          <h4>增进舍友协作</h4>
+          <p>共同参与设计，凝聚宿舍集体力量</p>
+        </div>
+      </div>
+      <div class="intro-point">
+        <div class="point-num">贰</div>
+        <div class="point-text">
+          <h4>展现艺术创意</h4>
+          <p>发挥专业特长，用设计表达宿舍个性</p>
+        </div>
+      </div>
+      <div class="intro-point">
+        <div class="point-num">叁</div>
+        <div class="point-text">
+          <h4>建设文明宿舍</h4>
+          <p>增强文明意识与集体责任意识</p>
+        </div>
+      </div>
+      <div class="intro-point">
+        <div class="point-num">肆</div>
+        <div class="point-text">
+          <h4>记录青春风貌</h4>
+          <p>展现大学生蓬勃向上的精神面貌</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 时间流程 ===== -->
+<section class="schedule" id="schedule">
+  <div class="wrap">
+    <div class="section-num">02</div>
+    <div class="section-label">SCHEDULE</div>
+    <h2 class="section-title">时间安排</h2>
+
+    <div class="phase">
+      <div class="phase-date">2026.10.19 — 11.01</div>
+      <div class="phase-name">作品征集 <span class="badge">投稿阶段</span></div>
+      <p class="phase-desc">
+        参赛宿舍完成门牌 Logo 创作，填写宿舍名称、3-5 个宿舍关键词及宿舍特色介绍。支持手绘与电子绘画两种形式。
+      </p>
+    </div>
+
+    <div class="phase">
+      <div class="phase-date">2026.11.02 — 11.05</div>
+      <div class="phase-name">评审投票 <span class="badge">评选阶段</span></div>
+      <p class="phase-desc">
+        全体师生可在「泉州工艺美院团委」公众号参与线上投票，综合票数评选优秀作品。
+      </p>
+      <div class="phase-criteria">
+        <span class="criteria-chip">创意性 <strong>30%</strong></span>
+        <span class="criteria-chip">表现力 <strong>30%</strong></span>
+        <span class="criteria-chip">宿舍特色契合度 <strong>40%</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 投稿方式 ===== -->
+<section class="submit" id="submit">
+  <div class="wrap">
+    <div class="section-num">03</div>
+    <div class="section-label">SUBMISSION</div>
+    <h2 class="section-title">如何<span class="hand-underline">投稿</span></h2>
+
+    <div class="email-block">
+      <div class="email-label">投稿邮箱 / EMAIL</div>
+      <div class="email-addr" id="emailText">3352371856@qq.com</div>
+      <button class="copy-btn" id="copyBtn" onclick="copyEmail()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="1"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="copyBtnText">复制邮箱</span>
+      </button>
+    </div>
+
+    <div class="format-block">
+      <h4>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        邮件主题格式
+      </h4>
+      <div class="format-box">学院 + 宿舍楼 + 宿舍号 + 宿舍画像作品</div>
+    </div>
+
+    <div class="format-block">
+      <h4>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        邮件附件
+      </h4>
+      <div class="format-box">高清作品文件（PNG / PDF） + 作品信息表</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-item">
+        <h5>手绘作品</h5>
+        <p>扫描或高清拍照，导出为 PDF / PNG 格式提交</p>
+      </div>
+      <div class="type-item">
+        <h5>电子绘画</h5>
+        <p>直接导出高清 PNG / PDF 文件提交</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      请严格按照邮件主题格式命名，避免稿件漏收。投稿截止 2026 年 11 月 1 日，请合理安排创作时间。
+    </div>
+  </div>
+</section>
+
+<!-- ===== 奖项 ===== -->
+<section class="awards" id="awards">
+  <div class="wrap">
+    <div class="section-num">04</div>
+    <div class="section-label">AWARDS</div>
+    <h2 class="section-title">奖项设置</h2>
+
+    <div class="award-row">
+      <div class="award-rank rank-1">01</div>
+      <div class="award-info">
+        <h4>一等奖</h4>
+        <p>U型枕头 + 荣誉奖状</p>
+      </div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank rank-2">02</div>
+      <div class="award-info">
+        <h4>二等奖</h4>
+        <p>一提纸巾 + 荣誉奖状</p>
+      </div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank rank-3">03</div>
+      <div class="award-info">
+        <h4>三等奖</h4>
+        <p>洗手液 + 荣誉奖状</p>
+      </div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank rank-4">★</div>
+      <div class="award-info">
+        <h4>优秀奖</h4>
+        <p>校园杯垫</p>
+      </div>
+    </div>
+
+    <p class="award-location">— 颁奖地点：泉州工艺美术职业学院校内</p>
+  </div>
+</section>
+
+<!-- ===== 须知 ===== -->
+<section class="rules" id="rules">
+  <div class="wrap">
+    <div class="section-num">05</div>
+    <div class="section-label">NOTICE</div>
+    <h2 class="section-title">参赛须知</h2>
+
+    <div class="rule-item">
+      <div class="rule-num">01</div>
+      <div class="rule-content">
+        <h4>原创要求</h4>
+        <p>作品必须为学生原创，严禁抄袭，不得侵犯他人知识产权。一经发现取消参赛资格。</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-num">02</div>
+      <div class="rule-content">
+        <h4>时间节点</h4>
+        <p>请严格遵守活动时间节点完成投稿，逾期提交的作品将不予收录。</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-num">03</div>
+      <div class="rule-content">
+        <h4>内容规范</h4>
+        <p>作品禁止包含违法、暴力、低俗等不良内容，应符合校园文化建设要求。</p>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-num">04</div>
+      <div class="rule-content">
+        <h4>思想导向</h4>
+        <p>作品应传递青年团员积极向上的思想风貌，展现当代大学生的青春活力与正能量。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 结尾 ===== -->
+<footer class="end">
+  <div class="end-deco">END</div>
+  <h2 class="end-title">期待你的<span class="accent">宿舍创意</span></h2>
+  <p class="end-sub">用设计，为你的宿舍留下独一无二的青春印记</p>
+  <div class="end-info">
+    <div class="end-info-row">
+      <span class="end-info-k">投稿邮箱</span>
+      <span class="end-info-v">3352371856@qq.com</span>
+    </div>
+    <div class="end-info-row">
+      <span class="end-info-k">截止日期</span>
+      <span class="end-info-v">2026.11.01</span>
+    </div>
+    <div class="end-info-row">
+      <span class="end-info-k">投票渠道</span>
+      <span class="end-info-v">泉州工艺美院团委公众号</span>
+    </div>
+  </div>
+  <p class="end-org">
+    泉州工艺美术职业学院学生委员会<br>
+    寝绘青春 · 宿说美好 宿舍门牌设计活动
+  </p>
+</footer>
+
+<!-- 回到顶部 -->
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast">已复制</div>
+
+<script>
+// 导航锚点平滑滚动 + 当前项高亮
+(function() {
+  var navLinks = document.querySelectorAll('.topbar-nav a');
+  var sections = [];
+  navLinks.forEach(function(link) {
+    var id = link.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: link });
+  });
+
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var id = this.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (target) {
+        var top = target.getBoundingClientRect().top + window.scrollY - 44;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  function highlight() {
+    var scrollPos = window.scrollY + 80;
+    var current = null;
+    sections.forEach(function(s) {
+      if (scrollPos >= s.el.offsetTop) current = s;
+    });
+    navLinks.forEach(function(l) { l.classList.remove('active'); });
+    if (current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', highlight, { passive: true });
+  highlight();
+})();
+
+// 回到顶部显隐
+(function() {
+  var btn = document.getElementById('toTop');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 500) btn.classList.add('show');
+    else btn.classList.remove('show');
+  }, { passive: true });
+})();
+
+// 复制邮箱
+function copyEmail() {
+  var email = document.getElementById('emailText').textContent;
+  var btn = document.getElementById('copyBtn');
+  var btnText = document.getElementById('copyBtnText');
+
+  function done() {
+    btn.classList.add('copied');
+    btnText.textContent = '已复制';
+    showToast('邮箱已复制');
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      btnText.textContent = '复制邮箱';
+    }, 2000);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email).then(done).catch(function() { fallback(email); done(); });
+  } else {
+    fallback(email); done();
+  }
+}
+function fallback(t) {
+  var ta = document.createElement('textarea');
+  ta.value = t;
+  ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+var toastTimer;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 1800);
+}
+</script>
+</body>
+</html>
